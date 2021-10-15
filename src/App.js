@@ -8,9 +8,25 @@ import Login from "./components/Login";
 import { useSelector } from "react-redux";
 import { selectUser } from "./features/userSlice";
 import { Spinner } from "@mui/material";
+import { auth, onAuthStateChanged } from "./firebase";
 
 export default function App() {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // the user is logged in
+        dispatch(
+          login({
+            displayName: user.displayName,
+            photoUrl: user.photoURL
+          })
+        );
+      }
+    });
+  }, []);
 
   // if (!user) {
   //   return (

@@ -8,8 +8,11 @@ function Login() {
   const dispatch = useDispatch();
 
   const signIn = () => {
-    signInWithPopup(auth, provider).then((result) => {
-      dispatch(login(result));
+    signInWithPopup(auth, provider).then((user) => {
+      dispatch(login({
+          displayName: user.displayName,
+          photoUrl: user.photoURL
+        }));
     });
   };
 
