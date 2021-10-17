@@ -1,12 +1,13 @@
 import "./App.css";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import { styled } from "@mui/styles";
 import Sidebar from "./components/Sidebar";
 import Chat from "./components/Chat";
 import Login from "./components/Login";
-import { useSelector } from "react-redux";
-import { selectUser } from "./features/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser, login } from "./features/userSlice";
 import { Spinner } from "@mui/material";
 import { auth, onAuthStateChanged } from "./firebase";
 
@@ -21,7 +22,7 @@ export default function App() {
         dispatch(
           login({
             displayName: user.displayName,
-            photoUrl: user.photoURL
+            photoURL: user.photoURL
           })
         );
       }

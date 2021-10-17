@@ -27,7 +27,7 @@ function Chat() {
       onSnapshot(ref2, (docs) => {
         const temp = [];
         docs.forEach((doc) => {
-          temp.push({ id: doc.id, ...doc.data() });
+          temp.push({ id: doc.id, data: doc.data() });
         });
         setRoomMessages(temp);
       });
@@ -55,14 +55,15 @@ function Chat() {
           </Header>
           <ChatMessages>
             {roomMessages.map((doc) => {
-              const { id, message, timestamp, user, userImage } = doc;
+              const { id, data } = doc;
+
               return (
                 <Message
                   key={id}
-                  message={message}
-                  timestamp={timestamp}
-                  user={user}
-                  userImage={userImage}
+                  message={data.message}
+                  timestamp={data.timestamp}
+                  user={data.user}
+                  userImage={data.userImage}
                 />
               );
             })}

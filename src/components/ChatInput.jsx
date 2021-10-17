@@ -13,7 +13,6 @@ function ChatInput({ channelName = "", channelId, chatRef }) {
     e.preventDefault();
 
     if (!channelId) return false;
-
     const ref = collection(doc(collection(db, "rooms"), channelId), "messages");
     addDoc(ref, {
       message: input,
@@ -28,13 +27,13 @@ function ChatInput({ channelName = "", channelId, chatRef }) {
 
   return (
     <ChatInputContainer>
-      <form>
+      <form onSubmit={sendMessage}>
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder={`Message #${channelName}`}
         />
-        <Button hidden onSubmit={sendMessage}>
+        <Button type="submit" hidden>
           SEND
         </Button>
       </form>

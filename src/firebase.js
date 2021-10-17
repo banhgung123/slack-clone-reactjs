@@ -15,6 +15,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  onAuthStateChanged,
   signOut
 } from "firebase/auth";
 
@@ -46,5 +47,6 @@ export {
   setDoc,
   serverTimestamp,
   signInWithPopup,
+  onAuthStateChanged,
   signOut
 };

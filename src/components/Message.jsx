@@ -7,7 +7,7 @@ function Message({ message, timestamp, user, userImage }) {
       <MessageInfo>
         <h4>
           {`${user} `}
-          <span>{new Date(timestamp).toUTCString()}</span>
+          <span>{}</span>
         </h4>
         <p>{message}</p>
       </MessageInfo>
