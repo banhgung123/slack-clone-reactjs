@@ -14,7 +14,7 @@ function Chat() {
   const [roomMessages, setRoomMessages] = useState(() => []);
 
   useEffect(() => {
-    if (roomId) {
+    if (roomId || roomMessages.length) {
       const ref1 = doc(collection(db, "rooms"), roomId);
       onSnapshot(ref1, (doc) => {
         setRoomDetails(doc.data());
@@ -32,9 +32,11 @@ function Chat() {
         setRoomMessages(temp);
       });
     }
-    if (!roomMessages.length)
+
+    if (!roomMessages.length) {
       chatRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [roomId, roomMessages]);
+    }
+  }, [roomId, roomMessages.length]);
 
   return (
     <ChatContainer>

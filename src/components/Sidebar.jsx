@@ -23,9 +23,13 @@ import {
   where,
   orderBy
 } from "./../firebase";
+import { selectUser } from "../features/userSlice";
+import { useSelector } from "react-redux";
 
 function Sidebar() {
   const [channels, setChannels] = useState(() => []);
+  const user = useSelector(selectUser);
+
   useEffect(() => {
     const q = query(
       collection(db, "rooms"),
@@ -48,7 +52,7 @@ function Sidebar() {
           <h2>SLACK HQ</h2>
           <h3>
             <FiberManualRecord />
-            Dansk
+            {user.displayName}
           </h3>
         </SidebarInfo>
         <Create />

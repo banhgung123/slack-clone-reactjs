@@ -6,15 +6,16 @@ import Avatar from "@mui/material/Avatar";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SearchIcon from "@mui/icons-material/Search";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import { useSelector } from "react-redux";
-import { selectUser } from "../features/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser, logout } from "../features/userSlice";
 import { auth, signOut } from "../firebase";
 
 function Header() {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const logOut = () => {
-    signOut(auth);
+    signOut(auth).then(() => dispatch(logout()));
   };
 
   return (
